@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Group;
+use App\Models\Subject;
 use View;
 
-class GroupsController extends Controller
+class SubjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $groups = Group::all();
+        $subjects = Subject::all();
         
-        return View::make('groups.index')
-        ->with('groups', $groups);
+        return View::make('subjects.index')
+        ->with('subjects', $subjects);
     }
 
     /**
@@ -28,7 +28,7 @@ class GroupsController extends Controller
      */
     public function create()
     {
-        return View::make('groups.create');
+        //
     }
 
     /**
@@ -45,10 +45,10 @@ class GroupsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Group  $group
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function show($id)
     {
         //
     }
@@ -56,10 +56,10 @@ class GroupsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Group  $group
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group)
+    public function edit($id)
     {
         //
     }
@@ -68,10 +68,10 @@ class GroupsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Group  $group
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,10 +79,10 @@ class GroupsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Group  $group
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
         //
     }

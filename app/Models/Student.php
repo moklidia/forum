@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    protected $fillable = ['last_name', 'given_name', 'date_of_birth'];
+
     //Get the points for a student
 
     public function point()

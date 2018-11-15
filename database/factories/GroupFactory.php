@@ -15,8 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Group::class, function (Faker $faker) {
     return [
-        'group_name' => $faker->randomLetter,
+        'name' => $faker->randomLetter,
         'description' => $faker->realText($maxNbChars = 100, $indexSize = 2),
-        'student_id' => factory('App\Models\Student')->create()->id,
     ];
 });

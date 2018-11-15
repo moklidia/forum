@@ -17,13 +17,9 @@ class CreateGroupsTable extends Migration
 
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('group_name', 10);
+            $table->string('name');
             $table->text('description');
-            $table->unsignedInteger('student_id')->unsigned();
             $table->timestamps();
-        });
-        Schema::table('groups', function($table){
-            $table->foreign('student_id')->references('id')->on('students');
         });
     }
 

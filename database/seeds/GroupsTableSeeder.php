@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Group;
 
 class GroupsTableSeeder extends Seeder
 {
@@ -12,6 +11,10 @@ class GroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Group::class, 3)->create();
+        factory(App\Models\Group::class, 2)->create()->each(function ($g) {
+        	factory(App\Models\Student::class, 5)->create([
+        		'group_id' => $g->id
+        		]);
+        });
     }
 }

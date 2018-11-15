@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Subject;
 
 class SubjectsTableSeeder extends Seeder
 {
@@ -12,6 +11,15 @@ class SubjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Subject::class, 3)->create();
+        factory(App\Models\Subject::class, 3)->create()->each(function ($subject) {
+
+        	$students = App\Models\Student::all();
+        	foreach ($students as $student) {
+                      	factory(App\Models\Point::class, 3)->create([
+        		'student_id' => $student->id,
+        		'subject_id' => $subject->id 
+        		]);
+        		 }
+    });
     }
 }

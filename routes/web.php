@@ -15,3 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/groups', 'GroupsController');
+Route::resource('/students', 'StudentsController');
+Route::resource('/subjects', 'SubjectsController');

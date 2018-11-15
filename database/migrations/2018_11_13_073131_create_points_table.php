@@ -17,14 +17,12 @@ class CreatePointsTable extends Migration
 
         Schema::create('points', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('student_id')->unsigned();
-            $table->unsignedInteger('subject_id')->unsigned();
+            $table->unsignedInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->unsignedInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->integer('points');
             $table->timestamps();
-        });
-        Schema::table('points', function($table){
-            $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('subject_id')->references('id')->on('subjects');
         });
     }
 
