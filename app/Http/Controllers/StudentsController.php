@@ -28,7 +28,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('students.create');
     }
 
     /**
@@ -39,7 +39,13 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = new Student;
+        $student->last_name = $request->input('add_last_name');
+        $student->given_name = $request->input('add_given_name');
+        $student->date_of_birth = $request->input('add_date_of_birth');
+        $student->group_id = $request->input('add_group_id');
+        $student->save();
+        return redirect('/students');
     }
 
     /**

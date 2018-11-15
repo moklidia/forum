@@ -28,7 +28,7 @@ class SubjectsController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('subjects.create');
     }
 
     /**
@@ -39,7 +39,10 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subject = new Subject;
+        $subject->name = $request->input('add_subject_name');
+        $subject->save();
+        return redirect('/subjects');
     }
 
     /**

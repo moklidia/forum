@@ -39,7 +39,11 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $group = new Group;
+        $group->name = $request->input('add_name');
+        $group->description = $request->input('add_description');
+        $group->save();
+        return redirect('/groups');
     }
 
     /**
