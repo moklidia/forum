@@ -54,9 +54,8 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Student $student)
     {
-        $student = Student::findOrFail($id);
         return view('students.show', compact('student'));
     }
 
@@ -66,10 +65,8 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        $student = Student::findOrFail($id);
-
         return view('students.edit', compact('student'));
     }
 
@@ -80,9 +77,8 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Student $student)
     {
-        $student = Student::findOrFail($id);
 
         $student->group_id = request('group_id');
         $student->last_name = request('last_name');
@@ -99,10 +95,8 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        Student::findOrFail($id)->delete();
-
         return redirect('/students');
     }
 }

@@ -52,10 +52,8 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Group $group)
     {
-        $group = Group::findOrFail($id);
-        return $group;
         return view('groups.show', compact('group'));
     }
 
@@ -65,9 +63,8 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Group $group)
     {
-        $group = Group::findOrFail($id);
 
         return view('groups.edit', compact('group'));
 
@@ -80,9 +77,8 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Group $group)
     {
-        $group = Group::findOrFail($id);
 
         $group->name = request('name');
         $group->description = request('description');
@@ -98,9 +94,8 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        Group::findOrFail($id)->delete();
 
         return redirect('/groups');
     }

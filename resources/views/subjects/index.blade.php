@@ -3,11 +3,11 @@
 @section('content')
 
 <h1 style="margin-top: 1em;">Subjects</h1>
-<table border style="width:50%">
+<table class="table"">
 	<thead>
 		<tr>
-			<td>ID</td>
-			<td>Name</td>
+			<td scope="col">ID</td>
+			<td scope="col">Name</td>
 		</tr>
 	</thead>
 	<tbody>

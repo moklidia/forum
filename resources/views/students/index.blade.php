@@ -4,14 +4,14 @@
 
 <h1 style="margin-top: 1em;">Students</h1>
 <body>
-<table border style="width:50%">
+<table class="table">
 	<thead>
 		<tr>
-			<td>ID</td>
-			<td>Last name</td>
-			<td>First name</td>
-			<td>Date of birth</td>
-			<td>Group ID</td>
+			<td scope="col">ID</td>
+			<td scope="col">Last name</td>
+			<td scope="col">First name</td>
+			<td scope="col">Date of birth</td>
+			<td scope="col">Group ID</td>
 		</tr>
 	</thead>
 	<tbody>

@@ -4,12 +4,12 @@
 
 <h1  style="margin-top: 1em;">Groups</h1>
 
-<table border style="width:50%">
+<table class="table">
 	<thead>
 		<tr>
-			<td>ID</td>
-			<td>Name</td>
-			<td>Description</td>
+			<td scope="col">ID</td>
+			<td scope="col">Name</td>
+			<td scope="col">Description</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -26,4 +26,5 @@
 	@endforeach
 	</tbody>
 </table>
+
 @endsection

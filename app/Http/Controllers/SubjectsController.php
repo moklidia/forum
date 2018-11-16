@@ -51,9 +51,8 @@ class SubjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Subject $subject)
     {
-        $subject = Subject::findOrFail($id);
         return view('subjects.show', compact('subject'));
     }
 
@@ -63,10 +62,8 @@ class SubjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Subject $subject)
     {
-        $subject = Subject::findOrFail($id);
-
         return view('subjects.edit', compact('subject'));
     }
 
@@ -77,9 +74,8 @@ class SubjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Subject $subject)
     {
-        $subject = Subject::findOrFail($id);
         $subject->name = request('subject_name');
 
         $subject->save();
@@ -93,10 +89,8 @@ class SubjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subject $subject)
     {
-        Subject::findOrFail($id)->delete();
-
         return redirect('/subjects');
     }
 }

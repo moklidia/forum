@@ -17,3 +17,4 @@ Route::get('/', function () {
 Route::resource('/groups', 'GroupsController');
 Route::resource('/students', 'StudentsController');
 Route::resource('/subjects', 'SubjectsController');
+Route::get('/results', 'ResultsController@index');

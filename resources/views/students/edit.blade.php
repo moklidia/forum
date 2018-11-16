@@ -29,7 +29,7 @@
     <label class="label" for="given_name">Given Name</label>
 
     <div class="control">
-      <input type="text" class="input" name="given_name" placeholder="Given Name" value="{{ $student->last_name }}">
+      <input type="text" class="input" name="given_name" placeholder="Given Name" value="{{ $student->given_name }}">
     </div>
   </div>
 

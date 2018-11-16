@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Point extends Model
 {
-    protected $fillable = ['points'];
-
 	//Get the student the credit points are related to
     public function student()
     {
