@@ -40,10 +40,10 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         $student = new Student;
-        $student->last_name = $request->input('add_last_name');
-        $student->given_name = $request->input('add_given_name');
-        $student->date_of_birth = $request->input('add_date_of_birth');
-        $student->group_id = $request->input('add_group_id');
+        $student->last_name = $request->input('last_name');
+        $student->given_name = $request->input('given_name');
+        $student->date_of_birth = $request->input('date_of_birth');
+        $student->group_id = $request->input('group_id');
         $student->save();
         return redirect('/students');
     }
@@ -56,7 +56,8 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -67,7 +68,9 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -77,9 +80,17 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        $student->group_id = request('group_id');
+        $student->last_name = request('last_name');
+        $student->given_name = request('given_name');
+
+        $student->save();
+
+        return redirect('/students');
     }
 
     /**
@@ -90,6 +101,8 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Student::findOrFail($id)->delete();
+
+        return redirect('/students');
     }
 }

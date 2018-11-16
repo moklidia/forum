@@ -40,8 +40,8 @@ class GroupsController extends Controller
     public function store(Request $request)
     {
         $group = new Group;
-        $group->name = $request->input('add_name');
-        $group->description = $request->input('add_description');
+        $group->name = $request->input('name');
+        $group->description = $request->input('description');
         $group->save();
         return redirect('/groups');
     }
@@ -52,9 +52,11 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function show($id)
     {
-        //
+        $group = Group::findOrFail($id);
+        return $group;
+        return view('groups.show', compact('group'));
     }
 
     /**
@@ -63,9 +65,12 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group)
+    public function edit($id)
     {
-        //
+        $group = Group::findOrFail($id);
+
+        return view('groups.edit', compact('group'));
+
     }
 
     /**
@@ -75,9 +80,16 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update($id)
     {
-        //
+        $group = Group::findOrFail($id);
+
+        $group->name = request('name');
+        $group->description = request('description');
+
+        $group->save();
+
+        return redirect('/groups');
     }
 
     /**
@@ -86,8 +98,10 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
-        //
+        Group::findOrFail($id)->delete();
+
+        return redirect('/groups');
     }
 }

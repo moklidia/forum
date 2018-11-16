@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Subjects</h1>
+<h1 style="margin-top: 1em;">Subjects</h1>
 <table border style="width:50%">
 	<thead>
 		<tr>
@@ -14,7 +14,10 @@
 	@foreach($subjects as $subject)
 		<tr>
 			<td>{{ $subject->id }}</td>
-			<td>{{ $subject->name }}</td>
+			<td>
+				<a href="/subjects/{{ $subject->id }}">
+				{{ $subject->name }}</td>
+			</a>
 		</tr>
 	@endforeach
 	</tbody>

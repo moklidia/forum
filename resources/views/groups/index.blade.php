@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Groups</h1>
+<h1  style="margin-top: 1em;">Groups</h1>
 
 <table border style="width:50%">
 	<thead>
@@ -15,7 +15,11 @@
 	<tbody>
 	@foreach($groups as $group)
 		<tr>
-			<td>{{ $group->id }}</td>
+			<td>
+				<a href="/groups/{{ $group->id }}">
+					{{ $group->id }}
+				</a>
+				</td>
 			<td>{{ $group->name }}</td>
 			<td>{{ $group->description }}</td>
 		</tr>

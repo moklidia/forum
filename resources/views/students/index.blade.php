@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Students</h1>
+<h1 style="margin-top: 1em;">Students</h1>
 <body>
 <table border style="width:50%">
 	<thead>
@@ -18,7 +18,10 @@
 	@foreach($students as $student)
 		<tr>
 			<td>{{ $student->id }}</td>
-			<td>{{ $student->last_name }}</td>
+			<td>
+				<a href="/students/{{ $student->id }}">
+				{{ $student->last_name }}</td>
+			</a>
 			<td>{{ $student->given_name }}</td>
 			<td>{{ $student->date_of_birth }}</td>
 			<td>{{ $student->group_id }}</td>

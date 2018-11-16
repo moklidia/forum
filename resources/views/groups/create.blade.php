@@ -1,42 +1,29 @@
 @extends('layout')
 
 @section('content')
+<h1 class="title" style="margin-top: 1em;">Add a Group</h1>
+<form method="POST" action="{{ route ('groups.store') }}">
+  {{ csrf_field() }}
 
-<h1>Groups</h1>
+  <div class="field">
+    <label class="label" for="name">Group Name</label>
 
-<body>
-<style>
-  .uper {
-    margin-top: 40px;
-  }
-</style>
-<div class="card uper">
-  <div class="card-header">
-    Add Group
+    <div class="control">
+      <input type="text" class="input" name="name" placeholder="Add Group Name">
+    </div>
   </div>
-  <div class="card-body">
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div><br />
-    @endif
-      <form method="post" action="{{ route('groups.store') }}">
-          <div class="form-group">
-              @csrf
-              <label for="name">Add Name:</label>
-              <input type="text" class="form-control" name="add_name"/>
-          </div>
-          <div class="form-group">
-              <label for="description">Add Description :</label>
-              <input type="text" class="form-control" name="add_description"/>
-          </div>
-          <button type="submit" class="btn btn-primary">Add</button>
-      </form>
+
+  <div class="field">
+    <lable class="label" for="description">Group Description</lable>
+
+    <div class="control">
+      <textarea name="description" class="textarea" placeholder="Add Group Description"></textarea>
+    </div>
   </div>
-</div>
-</body>
+  <div class="field">
+    <div class="control">
+      <button type="submit" class="button is-link">Add Group</button>
+    </div>
+  </div>
+</form>
 @endsection
