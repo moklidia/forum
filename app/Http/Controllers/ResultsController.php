@@ -13,7 +13,10 @@ class ResultsController extends Controller {
 
 	    $students = Student::with('subjects')->get();
 		$subjects = Subject::all();
-
+		foreach($students as $student) {
+		$average = Point::where('student_id', $student->id)->avg('points');
+		$student->avgPoint = $average;
+		}
 
 
 		return view('results.index', compact('students', 'subjects'));

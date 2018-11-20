@@ -15,6 +15,7 @@
 					@foreach($subjects as $subject)
 						<td>{{ $subject->name }}</td>
 					@endforeach
+                    <td scope="col">Average</td>
 
 				</tr>
 				</thead>
@@ -25,11 +26,12 @@
 				<td>{{ $student->last_name }}</td>
 				<td>{{ $student->given_name }}</td>
 				@foreach($student->subjects as $subject)
-					<td>{{ $subject->pivot->points }}</td>
+                    <td>{{ $subject->pivot->points }}</td>
 				@endforeach
+                <td>{{ round($student->avgPoint) }}</td>
 
 			</tr>
-		@endforeach
+            @endforeach
 		</tbody>
 	</table>
 </body>
