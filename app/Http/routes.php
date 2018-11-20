@@ -8,7 +8,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -24,9 +24,9 @@ Route::resource('auth/login', 'Auth\AuthController');
 // Registration Routes...
 Route::resource('auth/register', 'Auth\AuthController');
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->middleware('guest');
-    Route::resource('/tasks', 'TaskController');
-    Route::auth();
+	Route::get('/', function () {
+		return view('welcome');
+	})->middleware('guest');
+	Route::resource('/tasks', 'TaskController');
+	Route::auth();
 });

@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Group;
+use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Point;
 
-class ResultsController extends Controller
-{
-    public function index()
-    {
-        $group = Group::findOrFail($id);
-        $students = Student::all();
-        
-        return View::make('students.index')
-        ->with('students', $students);
-    }
+class ResultsController extends Controller {
+
+	public function index() {
+
+	    $students = Student::with('subjects')->get();
+		$subjects = Subject::all();
+
+
+
+		return view('results.index', compact('students', 'subjects'));
+	}
 }

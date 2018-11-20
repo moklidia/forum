@@ -94,8 +94,9 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
+        Group::findOrFail($id)->delete();
 
         return redirect('/groups');
     }

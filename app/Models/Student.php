@@ -2,23 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
-{
-    protected $fillable = ['last_name', 'given_name', 'date_of_birth'];
+class Student extends Model {
 
-    //Get the points for a student
+	protected $fillable = ['last_name', 'given_name', 'date_of_birth'];
 
-    public function point()
-    {
-    	return $this->hasMany('App/Models/Point');
-    }
+	//Get the points for a student
 
-    //Get the group the student belongs to
+	// public function points() {
+	// 	return $this->hasMany('App/Models/Point');
+	// }
 
-    public function group()
-    {
-    	return $this->belongsTo('App/Models/Group');
-    }
+	//Get the group the student belongs to
+
+	public function group() {
+		return $this->belongsTo('App/Models/Group');
+	}
+
+	public function subjects() {
+		return $this->belongsToMany(Subject::class, 'points', 'student_id', 'subject_id')->withPivot('points');
+	}
 }

@@ -95,8 +95,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
+        Student::findOrFail($id)->delete();
         return redirect('/students');
     }
 }
