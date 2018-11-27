@@ -1,7 +1,12 @@
 @extends('layout')
 
+@section('title')
+    Add a subject
+@endsection
+
 @section('content')
-<h1 class="title" style="margin-top: 1em;">Add a Subject</h1>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+<h1 class="title" style="margin: 1em;">Add a Subject</h1>
 <form method="POST" action="{{ route ('subjects.store') }}">
   {{ csrf_field() }}
 

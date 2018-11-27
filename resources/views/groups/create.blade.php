@@ -1,7 +1,13 @@
 @extends('layout')
 
+@section('title')
+    Add a group
+@endsection
+
 @section('content')
-<h1 class="title" style="margin-top: 1em;">Add a Group</h1>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css"
+          xmlns:style="http://www.w3.org/1999/xhtml">
+<h1 class="title" style="margin: 1em;">Add a Group</h1>
 <form method="POST" action="{{ route ('groups.store') }}">
   {{ csrf_field() }}
 

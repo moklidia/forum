@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use View;
 
@@ -54,7 +56,19 @@ class GroupsController extends Controller
      */
     public function show(Group $group)
     {
-        return view('groups.show', compact('group'));
+        $students = Student::with('subjects')->where(['group_id' => $group->id])->get();
+        $subjects = Subject:: all();
+/*        foreach($students as $student){
+            $studentIds[] = $student->id;
+        }*/
+
+        foreach ($subjects as $subject) {
+
+            $groupAverage[$subject->id] = $subject->points->whereIn('student_id', array_values($studentIds))->avg('points');
+        }
+        dd($subject->id);
+
+        return view('groups.show', compact('group', 'students', 'subjects', 'groupAverage'));
     }
 
     /**

@@ -1,15 +1,28 @@
 @extends('layout')
 
+@section('title')
+    Groups
+@endsection
+
 @section('content')
 
-<h1  style="margin-top: 1em;">Groups</h1>
+    <h1 style="margin-bottom: 1em;">Groups</h1>
 
-<table class="table">
+    <form method="GET" action="/groups/create">
+        <div class="field" style="margin-bottom: 1em;">
+            <div class="control">
+                <button type="submit" class="btn btn-light">Add Group</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-hover">
 	<thead>
 		<tr>
 			<td scope="col">ID</td>
 			<td scope="col">Name</td>
 			<td scope="col">Description</td>
+            <td scope="col"></td>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,6 +35,15 @@
 				</td>
 			<td>{{ $group->name }}</td>
 			<td>{{ $group->description }}</td>
+            <td>
+                <form method="GET" action="/groups/{{ $group->id }}/edit">
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="btn btn-primary">Edit Group</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
 		</tr>
 	@endforeach
 	</tbody>
