@@ -18,7 +18,7 @@ class ResultsController extends Controller
         foreach ($students as $student) {
 
             $average[$student->id] = round($student->points->avg('points'), 1);
-            $colors[$student->id] = $this->getColor($average[$student->id], $student->id);
+            $student->averageScore = $average[$student->id];
         }
 
         $excellents = array_where($average, function ($value, $key) {
@@ -35,16 +35,5 @@ class ResultsController extends Controller
             compact('students', 'subjects', 'excellentStudents', 'colors', 'average', 'goodStudents'));
     }
 
-    public function getColor($point, $id)
-    {
-        $color = "#000000";
-        if (($point >= 4.5) && ($point <= 5))
-            $color = "#10DA3B";
-        elseif (($point > 3) && ($point < 4.5))
-            $color = "#F1BE37";
-        elseif ($point <= 3)
-            $color = "#F8280D";
 
-        return $colors[$id] = $color;
-    }
 }

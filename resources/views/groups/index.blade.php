@@ -28,14 +28,18 @@
 	<tbody>
 	@foreach($groups as $group)
 		<tr>
-			<td>
-				<a href="/groups/{{ $group->id }}">
-					{{ $group->id }}
-				</a>
-				</td>
+			<td>{{ $group->id }}</td>
 			<td>{{ $group->name }}</td>
 			<td>{{ $group->description }}</td>
             <td>
+            	<form method="GET" action="/groups/{{ $group->id }}">
+                    <div class="field">
+                        <div class="control"style="margin-bottom: 1em;">
+                            <button type="submit" class="btn btn-info">View Group Results</button>
+                        </div>
+                    </div>
+                </form>
+
                 <form method="GET" action="/groups/{{ $group->id }}/edit">
                     <div class="field">
                         <div class="control">
