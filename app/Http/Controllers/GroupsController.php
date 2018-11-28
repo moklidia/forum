@@ -58,15 +58,19 @@ class GroupsController extends Controller
     {
         $students = Student::with('subjects')->where(['group_id' => $group->id])->get();
         $subjects = Subject:: all();
-/*        foreach($students as $student){
+
+        foreach($students as $student){
             $studentIds[] = $student->id;
-        }*/
+        }
 
         foreach ($subjects as $subject) {
 
-            $groupAverage[$subject->id] = $subject->points->whereIn('student_id', array_values($studentIds))->avg('points');
+            $groupAverage = $subject->points->whereIn('student_id', array_values($studentIds))->avg('points');
+            $subject->groupAverage = $groupAverage;
         }
-        dd($subject->id);
+
+        
+
 
         return view('groups.show', compact('group', 'students', 'subjects', 'groupAverage'));
     }

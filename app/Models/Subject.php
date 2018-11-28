@@ -11,4 +11,8 @@ class Subject extends Model {
 	public function students() {
 		return $this->belongsToMany(Student::class, 'points', 'subject_id', 'student_id');
 	}
+
+	public function points() {
+        return $this->hasMany(Point::class);
+    }
 }

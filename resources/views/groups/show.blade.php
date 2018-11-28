@@ -31,7 +31,7 @@
             <tr>
                     <td colspan="3">Average</td>
                 @foreach($subjects as $subject)
-                    <td scope="col"> {{ $groupAverage[$subject->id] }}</td>
+                    <td scope="col"> {{ $subject->groupAverage }}</td>
                 @endforeach
             </tr>
             </tfoot>
@@ -47,7 +47,6 @@
             @foreach($student->subjects as $subject)
                 <td>{{ $subject->pivot->points }}</td>
             @endforeach
-            <td>{{ $groupAverage }}</td>
         </tr>
         @endforeach
         </tbody>
