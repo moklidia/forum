@@ -14,10 +14,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\Student::class, function (Faker $faker) {
-    return [
+$factory->define(
+    App\Models\Student::class, function (Faker $faker) {
+        return [
         'last_name' => $faker->lastName,
         'given_name' => $faker->firstName,
         'date_of_birth' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = '-18 years', $timezone = null),
-    ];
-});
+        ];
+    }
+);

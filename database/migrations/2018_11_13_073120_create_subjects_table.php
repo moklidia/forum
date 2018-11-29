@@ -15,11 +15,13 @@ class CreateSubjectsTable extends Migration
     {
         Schema::enableForeignKeyConstraints();
 
-        Schema::create('subjects', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
+        Schema::create(
+            'subjects', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

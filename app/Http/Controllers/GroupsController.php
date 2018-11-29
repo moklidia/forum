@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use App\Http\Requests\GroupValidation;
 use View;
 
 class GroupsController extends Controller
@@ -39,13 +40,11 @@ class GroupsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GroupValidation $request)
     {
-        $group = new Group;
-        $group->name = $request->input('name');
-        $group->description = $request->input('description');
-        $group->save();
-        return redirect('/groups');
+        Group::create($request->input());
+        
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -92,18 +91,15 @@ class GroupsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Group $group
+     * @param  \App\Group               $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Group $group)
+    public function update(GroupValidation $request, Group $group)
     {
 
-        $group->name = request('name');
-        $group->description = request('description');
+        $group->update($request->all());
 
-        $group->save();
-
-        return redirect('/groups');
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -116,6 +112,6 @@ class GroupsController extends Controller
     {
         Group::findOrFail($id)->delete();
 
-        return redirect('/groups');
+        return redirect()->route('groups.index');
     }
 }

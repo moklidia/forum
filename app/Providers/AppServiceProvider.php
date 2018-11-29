@@ -14,18 +14,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive('class', function($average) {
+        Blade::directive(
+            'class', function ($average) {
             
-        return '<?php 
+                return '<?php 
                 if ((' . $average . ' >= 4.5) && (' . $average . ' <= 5))
                     $textClass = "text-success";
                 elseif ((' . $average . ' > 3) && (' . $average . ' < 4.5))
                     $textClass = "text-warning";
-                elseif (' . $average . ' <= 3.5)
+                elseif (' . $average . ' <= 3)
                     $textClass = "text-danger";
                 echo $textClass;
             ?>';
-        });
+            }
+        );
     }
 
     /**

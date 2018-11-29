@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentValidation;
 use App\Models\Student;
 use View;
 
@@ -37,15 +38,11 @@ class StudentsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentValidation $request)
     {
-        $student = new Student;
-        $student->last_name = $request->input('last_name');
-        $student->given_name = $request->input('given_name');
-        $student->date_of_birth = $request->input('date_of_birth');
-        $student->group_id = $request->input('group_id');
-        $student->save();
-        return redirect('/students');
+        Student::create($request->all());
+
+        return redirect()->route('students.index');
     }
 
     /**
@@ -74,19 +71,15 @@ class StudentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Student $student)
+    public function update(StudentValidation $request, Student $student)
     {
 
-        $student->group_id = request('group_id');
-        $student->last_name = request('last_name');
-        $student->given_name = request('given_name');
+        $student->update($request->except(['date_of_birth']));
 
-        $student->save();
-
-        return redirect('/students');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -98,6 +91,7 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         Student::findOrFail($id)->delete();
-        return redirect('/students');
+
+        return redirect()->route('students.index');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SubjectValidation;
 use App\Models\Subject;
 use View;
 
@@ -37,12 +38,11 @@ class SubjectsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubjectValidation $request)
     {
-        $subject = new Subject;
-        $subject->name = $request->input('add_subject_name');
-        $subject->save();
-        return redirect('/subjects');
+        Subject::create($request->all());
+        
+        return redirect()->route('subjects.index');
     }
 
     /**
@@ -71,16 +71,14 @@ class SubjectsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Subject $subject)
+    public function update(SubjectValidation $request, Subject $subject)
     {
-        $subject->name = request('subject_name');
+        $subject->update($request->all());
 
-        $subject->save();
-
-        return redirect('/subjects');
+        return redirect()->route('subjects.index');
     }
 
     /**
@@ -89,9 +87,10 @@ class SubjectsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy($id)
     {
         Subject::findOrFail($id)->delete();
-        return redirect('/subjects');
+
+        return redirect()->route('subjects.index');
     }
 }

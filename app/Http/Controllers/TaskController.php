@@ -35,9 +35,11 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        return view('tasks.index', [
+        return view(
+            'tasks.index', [
             'tasks' => $this->tasks->forUser($request->user()),
-        ]);
+            ]
+        );
     }
 
     /**
@@ -48,12 +50,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $this->validate(
+            $request, [
             'name' => 'required|max:255',
-        ]);
-        $request->user()->tasks()->create([
+            ]
+        );
+        $request->user()->tasks()->create(
+            [
             'name' => $request->name,
-        ]);
+            ]
+        );
         return redirect('/tasks');
 
     }
@@ -62,7 +68,7 @@ class TaskController extends Controller
      * Destroy the given task.
      *
      * @param  Request $request
-     * @param  Task $task
+     * @param  Task    $task
      * @return Response
      */
     public function destroy(Request $request, Task $task)

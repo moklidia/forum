@@ -21,18 +21,24 @@ class ResultsController extends Controller
             $student->averageScore = $average[$student->id];
         }
 
-        $excellents = array_where($average, function ($value, $key) {
-            return ($value == 5);
-        });
+        $excellents = array_where(
+            $average, function ($value, $key) {
+                return ($value == 5);
+            }
+        );
         $excellentStudents = $students->whereIn('id', array_keys($excellents));
 
-        $goods = array_where($average, function ($value, $key) {
-            return ($value >= 4.5 && $value < 5);
-        });
+        $goods = array_where(
+            $average, function ($value, $key) {
+                return ($value >= 4.5 && $value < 5);
+            }
+        );
         $goodStudents = $students->whereIn('id', array_keys($goods));
 
-        return view('results.index',
-            compact('students', 'subjects', 'excellentStudents', 'colors', 'average', 'goodStudents'));
+        return view(
+            'results.index',
+            compact('students', 'subjects', 'excellentStudents', 'colors', 'average', 'goodStudents')
+        );
     }
 
 

@@ -11,10 +11,14 @@ class GroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Group::class, 2)->create()->each(function ($g) {
-        	factory(App\Models\Student::class, 5)->create([
-        		'group_id' => $g->id
-        		]);
-        });
+        factory(App\Models\Group::class, 2)->create()->each(
+            function ($g) {
+                factory(App\Models\Student::class, 5)->create(
+                    [
+                    'group_id' => $g->id
+                    ]
+                );
+            }
+        );
     }
 }

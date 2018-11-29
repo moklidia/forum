@@ -13,9 +13,11 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\Group::class, function (Faker $faker) {
-    return [
+$factory->define(
+    App\Models\Group::class, function (Faker $faker) {
+        return [
         'name' => $faker->randomLetter,
         'description' => $faker->realText($maxNbChars = 100, $indexSize = 2),
-    ];
-});
+        ];
+    }
+);
