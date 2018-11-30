@@ -6,37 +6,32 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Group;
+use App\Repositories\PointsRepository;
+use App\Services\StudentService;
 
 class ResultsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
 
     public function index()
     {
 
-        $students = Student::with('subjects')->get();
+        $students = Student::with('subjects', 'points')->get();
+
         $subjects = Subject::all();
-        foreach ($students as $student) {
-            $average[$student->id] = round($student->points->avg('points'), 1);
-            $student->averageScore = $average[$student->id];
-        }
 
-        $excellents = array_where(
-            $average, function ($value, $key) {
-                return ($value == 5);
-            }
-        );
-        $excellentStudents = $students->whereIn('id', array_keys($excellents));
 
-        $goods = array_where(
-            $average, function ($value, $key) {
-                return ($value >= 4.5 && $value < 5);
-            }
-        );
-        $goodStudents = $students->whereIn('id', array_keys($goods));
+        $excellentStudents = $students->where('avg_point', '=', '5');
+        $goodStudents = $students->where('avg_point', '>=', '4.5')
+            ->where('avg_point', '<', '5');
 
         return view(
             'results.index',
-            compact('students', 'subjects', 'excellentStudents', 'colors', 'average', 'goodStudents')
+            compact('students', 'subjects', 'excellentStudents', 'goodStudents')
         );
     }
 

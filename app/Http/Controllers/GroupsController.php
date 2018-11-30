@@ -7,10 +7,28 @@ use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Http\Requests\GroupValidation;
+use App\Services\GroupService;
 use View;
 
 class GroupsController extends Controller
 {
+    /**
+     * The points repository instance.
+     *
+     * @var Points
+     */
+    protected $group;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(GroupService $group)
+    {
+        $this->group = $group;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -58,15 +76,13 @@ class GroupsController extends Controller
         $students = $group->students()->get();
         $subjects = Subject:: all();
         $studentIds = $students->pluck('id');
-        
-            
+                 
         foreach ($subjects as $subject) {
-
             $groupAverage = $subject->points->whereIn('student_id', $studentIds)->avg('points');
             $subject->groupAverage = $groupAverage;
         }
+        return view('groups.show', compact('group', 'students', 'subjects'));
 
-        return view('groups.show', compact('group', 'students', 'subjects', 'groupAverage'));
     }
 
     /**

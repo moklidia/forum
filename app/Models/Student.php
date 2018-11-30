@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
 
-    protected $fillable = ['last_name', 'given_name', 'date_of_birth'];
+    protected $fillable = ['last_name', 'given_name', 'date_of_birth', 'avg_point'];
 
     public function group()
     {
@@ -25,4 +25,10 @@ class Student extends Model
     {
         return $this->hasMany(Point::class);
     }
+
+    public function getAvgPointAttribute()
+    {
+        return round($this->points()->pluck('points')->avg(), 1);
+    }
+
 }

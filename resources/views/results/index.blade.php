@@ -29,7 +29,7 @@ View results
                 @foreach($student->subjects as $subject)
                 <td>{{ $subject->pivot->points }}</td>
                 @endforeach
-                <td class="@class($average[$student->id])">{{ $student->averageScore }}</td>
+                <td class="@class($student->avg_point)">{{ $student->avg_point }}</td>
             </tr>
             @endforeach
         </tbody>
