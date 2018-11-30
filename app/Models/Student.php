@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Subject;
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
@@ -12,7 +13,7 @@ class Student extends Model
 
     public function group()
     {
-        return $this->belongsTo('App/Models/Group');
+        return $this->belongsTo('App\Models\Group', 'group_id');
     }
 
     public function subjects()

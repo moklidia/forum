@@ -77,7 +77,7 @@ class StudentsController extends Controller
     public function update(StudentValidation $request, Student $student)
     {
 
-        $student->update($request->except(['date_of_birth']));
+        $student->update($request->all());
 
         return redirect()->route('students.index');
     }

@@ -16,7 +16,6 @@ class ResultsController extends Controller
         $students = Student::with('subjects')->get();
         $subjects = Subject::all();
         foreach ($students as $student) {
-
             $average[$student->id] = round($student->points->avg('points'), 1);
             $student->averageScore = $average[$student->id];
         }

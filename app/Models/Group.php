@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Student;
 
 class Group extends Model
 {
@@ -12,7 +13,7 @@ class Group extends Model
 
     public function students()
     {
-        return $this->hasMany('App/Models/Student');
+        return $this->hasMany('App\Models\Student');
     }
     
 }
