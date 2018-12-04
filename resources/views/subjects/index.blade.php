@@ -25,7 +25,7 @@ Subjects
 			<td>{{ $subject->id }}</td>
 			<td>{{ $subject->name }}</td>
 			<td style="white-space: nowrap">
-				<a href="/subjects/{{ $subject->id }}/edit" class="btn btn-primary d-inline-block;" style="width: 8em; margin-bottom: 1em">Edit</a>
+				<a href="/subjects/{{ $subject->id }}/edit" class="btn btn-primary d-inline-block;" style="width: 8em;">Edit</a>
 				<form action="/subjects/{{ $subject->id }}" method="POST" class="d-inline-block">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}

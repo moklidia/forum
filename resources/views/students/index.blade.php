@@ -35,7 +35,7 @@ Students
 				<td>{{ $student->date_of_birth }}</td>
 				<td>{{ $student->group_id }}</td>
 				<td style="white-space: nowrap">
-					<a href="/students/{{ $student->id }}/edit" class="btn btn-primary d-inline-block;" style="width: 8em; margin-bottom: 1em">Edit</a>
+					<a href="/students/{{ $student->id }}/edit" class="btn btn-primary d-inline-block;" style="width: 8em;">Edit</a>
 					<form action="/students/{{ $student->id }}" method="POST" class="d-inline-block">
 						{{ csrf_field() }}
 						{{ method_field('DELETE') }}

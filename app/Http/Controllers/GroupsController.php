@@ -13,23 +13,6 @@ use View;
 class GroupsController extends Controller
 {
     /**
-     * The points repository instance.
-     *
-     * @var Points
-     */
-    protected $group;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(GroupService $group)
-    {
-        $this->group = $group;
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

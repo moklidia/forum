@@ -20,3 +20,7 @@ Route::resource('/groups', 'GroupsController');
 Route::resource('/students', 'StudentsController');
 Route::resource('/subjects', 'SubjectsController');
 Route::resource('/results', 'ResultsController');
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');

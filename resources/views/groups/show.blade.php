@@ -41,4 +41,5 @@ Group Information
         </tr>
         @endforeach
     </tbody>
+</table>
     @endsection
