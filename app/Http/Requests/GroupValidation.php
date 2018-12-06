@@ -36,5 +36,4 @@ class GroupValidation extends FormRequest
             'description.required' => 'Description is required!',
         ];
     }*/
-
 }

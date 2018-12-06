@@ -27,7 +27,7 @@ Groups
       <td>{{ $group->id }}</td>
       <td>{{ $group->name }}</td>
       <td>{{ $group->description }}</td>
-      <td><a href="/groups/{{ $group->id }}" class="btn btn-info d-inline-block" style="width: 100px";">Results</a></td>
+      <td><a href="/groups/{{ $group->id }}" class="btn btn-info d-inline-block" style="width: 100px;">Results</a></td>
       <td style="white-space: nowrap">
         
         <a href="/groups/{{ $group->id }}/edit" class="btn btn-primary d-inline-block" style="width: 8em;">Edit</a>

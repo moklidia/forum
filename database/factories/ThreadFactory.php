@@ -13,12 +13,17 @@ use Faker\Generator as Faker;
 |
 */
 
+
 $factory->define(
-    App\Models\Group::class,
+    App\Models\Thread::class,
     function (Faker $faker) {
         return [
-        'name' => $faker->randomLetter,
-        'description' => $faker->realText($maxNbChars = 100, $indexSize = 2),
+        /*'user_id' => \App\Models\User::pluck('id')->random(),*/
+        'user_id' => function () {
+            return factory('App\Models\User')->create()->id;
+        },
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph
         ];
     }
 );

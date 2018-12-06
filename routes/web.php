@@ -11,15 +11,17 @@
 |
 */
 
-Route::get(
-    '/', function () {
+Route::get('/', function () {
         return view('welcome');
-    }
-);
+});
 Route::resource('/groups', 'GroupsController');
 Route::resource('/students', 'StudentsController');
 Route::resource('/subjects', 'SubjectsController');
 Route::resource('/results', 'ResultsController');
+Route::get('/threads', 'ThreadsController@index');
+Route::get('/threads/{thread}', 'ThreadsController@show');
+Route::post('/threads', 'ThreadsController@store');
+Route::post('/threads/{thread}/replies', 'RepliesController@store');
 Auth::routes();
 
 

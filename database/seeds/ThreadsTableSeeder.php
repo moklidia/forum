@@ -3,8 +3,9 @@
 namespace App\Database;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
-class GroupsTableSeeder extends Seeder
+class ThreadsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +14,11 @@ class GroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Group::class, 2)->create()->each(
-            function ($g) {
-                factory(App\Models\Student::class, 5)->create(
+        factory(App\Models\Thread::class, 10)->create()->each(
+            function ($thread) {
+                factory('App\Models\Reply', 5)->create(
                     [
-                    'group_id' => $g->id
+                    'thread_id' => $thread->id,
                     ]
                 );
             }

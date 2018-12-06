@@ -34,6 +34,4 @@ class ResultsController extends Controller
             compact('students', 'subjects', 'excellentStudents', 'goodStudents')
         );
     }
-
-
 }

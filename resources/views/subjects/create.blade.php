@@ -6,7 +6,7 @@ Add a subject
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
 <h1 class="title" style="margin: 1em;">Add a Subject</h1>
 <form method="POST" action="{{ route ('subjects.store') }}">
-  {{ csrf_field() }}
+  @csrf
   <div class="field">
     <label class="label" for="name">Subject Name</label>
     <div class="control">

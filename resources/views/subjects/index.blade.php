@@ -11,7 +11,7 @@ Subjects
 		</div>
 	</div>
 </form>
-<table class="table table-hover style="text-align: center;">
+<table class="table table-hover" style="text-align: center;">
 	<thead>
 		<tr>
 			<td scope="col">ID</td>

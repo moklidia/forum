@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Database;
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +18,8 @@ class CreatePointsTable extends Migration
         Schema::enableForeignKeyConstraints();
 
         Schema::create(
-            'points', function (Blueprint $table) {
+            'points',
+            function (Blueprint $table) {
                 $table->increments('id');
                 $table->unsignedInteger('student_id');
                 $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');

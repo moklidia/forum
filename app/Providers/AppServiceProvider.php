@@ -15,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive(
-            'class', function ($average) {
+            'class',
+            function ($average) {
             
                 return '<?php 
                 if ((' . $average . ' >= 4.5) && (' . $average . ' <= 5))

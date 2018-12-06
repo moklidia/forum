@@ -30,5 +30,4 @@ class Student extends Model
     {
         return round($this->points()->pluck('points')->avg(), 1);
     }
-
 }

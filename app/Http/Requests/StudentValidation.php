@@ -31,10 +31,8 @@ class StudentValidation extends FormRequest
 
         if ($this->method() === 'POST') {
             $rules['date_of_birth'] = 'required';
-        } 
+        }
 
         return $rules;
-
     }
-    
 }

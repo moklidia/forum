@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Database;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,13 +15,17 @@ class CreateThreadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('threads', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->string('title');
-            $table->text('body');
-            $table->timestamps();
-        });
+        Schema::create(
+            'threads',
+            function (Blueprint $table) {
+                $table->increments('id');
+                $table->unsignedInteger('user_id');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->string('title');
+                $table->text('body');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

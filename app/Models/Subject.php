@@ -23,11 +23,10 @@ class Subject extends Model
     public function getGroupAverage()
     {
         return $this->groupAverage;
-    } 
+    }
 
     public function getAvgPointAttribute()
     {
         return $this->students()->pluck('points')->avg();
     }
-
 }

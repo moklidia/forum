@@ -6,7 +6,6 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
-
 {
     /**
      * The attributes that are mass assignable.

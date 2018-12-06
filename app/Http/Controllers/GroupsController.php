@@ -65,7 +65,6 @@ class GroupsController extends Controller
             $subject->groupAverage = $groupAverage;
         }
         return view('groups.show', compact('group', 'students', 'subjects'));
-
     }
 
     /**
@@ -78,7 +77,6 @@ class GroupsController extends Controller
     {
 
         return view('groups.edit', compact('group'));
-
     }
 
     /**
