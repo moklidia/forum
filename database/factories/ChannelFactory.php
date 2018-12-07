@@ -15,21 +15,13 @@ use Faker\Generator as Faker;
 
 
 $factory->define(
-    App\Models\Thread::class,
+    App\Models\Channel::class,
     function (Faker $faker) {
+        $name = $faker->word;
+
         return [
-        /*'user_id' => \App\Models\User::pluck('id')->random(),*/
-        'user_id' => function () {
-            return factory('App\Models\User')->create()->id;
-        },
-        /*if (app()->environment() === 'testing') {
-            throw $exception;
-        }*/
-        'channel_id' => function () {
-            return factory('App\Models\Channel')->create()->id;
-        },
-        'title' => $faker->sentence,
-        'body' => $faker->paragraph
+        'name' => $name,
+        'slug' => $name,
         ];
     }
 );

@@ -3,9 +3,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Forum threads</div>
-                <div class="panel-body">
+            <div class="card card-default">
+                <div class="card-header">Forum threads</div>
+                <div class="card-body">
                     @foreach ($threads as $thread)
                     <article>
                         <h4><a href="{{ $thread->path() }}">{{ $thread->title }}</a></h4>

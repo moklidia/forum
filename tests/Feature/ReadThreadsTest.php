@@ -43,9 +43,23 @@ class ThreadsTest extends TestCase
      */
     public function a_user_can_read_replies_that_are_associated_with_a_thread()
     {
-        $reply = factory('App\Models\Reply')->create(['thread_id' => $this->thread->id]);
+        $reply = create('App\Models\Reply', ['thread_id' => $this->thread->id]);
 
-        $this->get('/threads/' . $this->thread->id)
+        $this->get($this->thread->path())
             ->assertSee($reply->body);
+    }
+
+    /**
+     * @test
+     */
+    public function a_user_can_view_threads_associated_with_a_channel()
+    {
+        $channel = create('App\Models\Channel');
+        $threadsInChannel = create('App\Models\Thread', ['channel_id' => $channel->id]);
+        $threadsNotInChannel = create('App\Models\Thread');
+
+        $this->get('/threads/'.$channel->slug)
+            ->assertSee($threadsInChannel->title)
+            ->assertDontSee($threadsNotInChannel->title);
     }
 }
