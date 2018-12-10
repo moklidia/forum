@@ -10,6 +10,7 @@
                     <article>
                         <h4><a href="{{ $thread->path() }}">{{ $thread->title }}</a></h4>
                         <div class="body">{{ $thread->body }}</div>
+                        <p><a href="/threads?by={{ $thread->creator->name }}">{{ $thread->creator->name }}</a></p>
                     </article>
 
                     <hr>

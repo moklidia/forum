@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Thread;
 use App\Models\Channel;
 use Illuminate\Http\Request;
+use App\Filters\ThreadFilters;
 use App\Http\Requests\ThreadValidation;
 use View;
 
@@ -21,12 +22,7 @@ class ThreadsController extends Controller
      */
     public function index(Channel $channel)
     {
-
-        if ($channel->exists) {
-            $threads = $channel->threads()->latest()->get();
-        } else {
-            $threads = Thread::latest()->get();
-        }
+        $threads = $this->getThreads($channel);
         
         return view('threads.index', compact('threads'));
     }
@@ -38,8 +34,8 @@ class ThreadsController extends Controller
      */
     public function create()
     {
-        $channels = Channel::all();
-        return View::make('threads.create', compact('channels'));
+        
+        return View::make('threads.create');
     }
 
     /**
@@ -103,5 +99,25 @@ class ThreadsController extends Controller
     public function destroy(Thread $thread)
     {
         //
+    }
+
+    public function getThreads (Channel $channel)
+    {
+        if ($channel->exists) {
+            $threads = $channel->threads()->latest()->get();
+        } else {
+            $threads = Thread::latest();
+        }
+
+        //if request (by), we should filter by username
+
+        if ($username = request('by')) {
+            $user = \App\Models\User::where('name', $username)->firstOrFail();
+            $threads = Thread::where('user_id', $user->id);
+        } 
+        
+        $threads = $threads->paginate(25);
+
+        return $threads;
     }
 }

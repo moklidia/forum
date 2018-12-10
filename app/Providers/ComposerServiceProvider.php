@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class ViewServiceProvider extends ServiceProvider
+class ComposerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -13,9 +14,11 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \View::composer('*', function ($view) {
-            $view->with('channels', \App\Models\Channel::all());
+        \View::composer('*', function($view) {
+
+         $view->with('channels', \App\Models\Channel::all());
         });
+        
     }
 
     /**
