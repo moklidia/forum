@@ -37,6 +37,7 @@ Subjects
 		</a>
 	</tr>
 	@endforeach
+	{{ $subjects->links() }}
 </tbody>
 </table>
 @endsection

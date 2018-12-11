@@ -19,7 +19,7 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $groups = Group::all();
+        $groups = Group::paginate(10);
 
         return View::make('groups.index')
             ->with('groups', $groups);

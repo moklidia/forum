@@ -2,23 +2,26 @@
 
 namespace App\Filters;
 
-use Illuminate\Http\Request;
 
-class ThreadFilters
+use App\Models\User;
+
+class ThreadFilters extends Filters
 {
-	public function __construct(Request $request)
-	{
-		$this->request = $request;
-	}
+	protected $filters = ['by', 'popular'];
 
-	public function apply($builder)
-	{
-		/*if request (by), we should filter by username*/
-
-        if (! $username = $this->request->by) return $builder; 
-        
+	// Filter a query by username
+	public function by($username)
+	{   
         $user = User::where('name', $username)->firstOrFail();
 
-        return $builder->where('user_id', $user->id);
+        return $this->builder->where('user_id', $user->id);
+	}
+
+	//Filter threads by popularity
+
+	public function popular()
+	{
+		/*$this->builder->getQuery()->orders = [];*/
+		return $this->builder->orderBy('replies_count', 'desc');
 	}
 } 

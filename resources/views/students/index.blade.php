@@ -34,6 +34,8 @@ Students
 				<td>{{ $student->given_name }}</td>
 				<td>{{ $student->date_of_birth }}</td>
 				<td>{{ $student->group_id }}</td>
+
+
 				<td style="white-space: nowrap">
 					<a href="/students/{{ $student->id }}/edit" class="btn btn-primary d-inline-block;" style="width: 8em;">Edit</a>
 					<form action="/students/{{ $student->id }}" method="POST" class="d-inline-block">
@@ -46,6 +48,7 @@ Students
 				</td>
 			</tr>
 			@endforeach
+{{ $students->links() }}
 		</tbody>
 	</table>
 </body>

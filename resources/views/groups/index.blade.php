@@ -41,6 +41,7 @@ Groups
       </td>
     </tr>
     @endforeach
+    {{ $groups->links() }}
   </tbody>
 </table>
 @endsection

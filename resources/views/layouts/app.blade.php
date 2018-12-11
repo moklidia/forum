@@ -8,6 +8,11 @@
         <title>@yield('title')</title>
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <style>
+        body { padding-bottom = 100px; }
+        .level { display: flex; align-items: center;  }
+        .flex { flex: 1 };
+        </style>
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -31,6 +36,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ URL::to('/threads') }}">All threads</a>
+                                    <a class="dropdown-item" href="{{ URL::to('/threads?popular=1') }}">Popular threads</a> 
                                     @if (auth()->check())
                                     <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My threads</a>
                                     @endif

@@ -20,9 +20,11 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel)
+    public function index(Channel $channel, ThreadFilters $filters)
     {
-        $threads = $this->getThreads($channel);
+        $threads = $this->getThreads($channel, $filters)->paginate(10);
+
+       
         
         return view('threads.index', compact('threads'));
     }
@@ -64,7 +66,11 @@ class ThreadsController extends Controller
      */
     public function show($ChannelId, Thread $thread)
     {
-        return view('threads.show', compact('thread'));
+
+        return view('threads.show', [
+            'thread' => $thread, 
+            'replies' => $thread->replies()->paginate(25)
+        ]);
     }
 
     /**
@@ -101,23 +107,14 @@ class ThreadsController extends Controller
         //
     }
 
-    public function getThreads (Channel $channel)
+    public function getThreads (Channel $channel, ThreadFilters $filters)
     {
+        $threads = Thread::filter($filters)->latest();
         if ($channel->exists) {
-            $threads = $channel->threads()->latest()->get();
-        } else {
-            $threads = Thread::latest();
+            $threads->where('channel_id', $channel->id);
         }
-
-        //if request (by), we should filter by username
-
-        if ($username = request('by')) {
-            $user = \App\Models\User::where('name', $username)->firstOrFail();
-            $threads = Thread::where('user_id', $user->id);
-        } 
         
-        $threads = $threads->paginate(25);
-
+        $threads = $threads;
         return $threads;
     }
 }
