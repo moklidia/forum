@@ -114,7 +114,6 @@ class ThreadsController extends Controller
             $threads->where('channel_id', $channel->id);
         }
         
-        $threads = $threads;
         return $threads;
     }
 }
