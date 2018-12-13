@@ -15,18 +15,16 @@ class FavoritesController extends Controller
 
     public function store(Reply $reply)
     {
-       $reply->favorite(auth()->id());
+        $reply->favorite(auth()->id());
 
-       return back();
-        
+        return back();
     }
 
     public function destroy(Favorite $favorite)
     {
        
-       $favorite->where('user_id', auth()->id())->delete();
+        $favorite->where('user_id', auth()->id())->delete();
 
-       return back();
-        
+        return back();
     }
 }

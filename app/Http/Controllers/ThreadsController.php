@@ -48,12 +48,14 @@ class ThreadsController extends Controller
      */
     public function store(Request $request, ThreadValidation $rules)
     {
-        $thread = Thread::create([
+        $thread = Thread::create(
+            [
             'user_id'    => auth()->id(),
             'title'      => request('title'),
             'channel_id' => request('channel_id'),
             'body'       => request('body'),
-        ]);
+            ]
+        );
 
         return redirect($thread->path());
     }
@@ -67,10 +69,13 @@ class ThreadsController extends Controller
     public function show($ChannelId, Thread $thread)
     {
 
-       return view('threads.show', [
-            'thread' => $thread, 
-            'replies' => $thread->replies()->paginate(25)
-        ]);
+        return view(
+            'threads.show',
+            [
+            'thread' => $thread,
+            'replies' => $thread->replies()->paginate(10)
+            ]
+        );
     }
 
     /**
@@ -107,7 +112,7 @@ class ThreadsController extends Controller
         //
     }
 
-    public function getThreads (Channel $channel, ThreadFilters $filters)
+    public function getThreads(Channel $channel, ThreadFilters $filters)
     {
         $threads = Thread::filter($filters)->latest();
         if ($channel->exists) {
