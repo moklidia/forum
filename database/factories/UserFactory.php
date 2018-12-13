@@ -21,6 +21,7 @@ $factory->define(
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => bcrypt('secret'), // secret
+        'avatar'=> $faker->image('public/uploads/avatars',400,300),  
         'remember_token' => str_random(10),
         ];
     }

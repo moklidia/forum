@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -45,5 +45,10 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'name';
+    }
+
+    public function avatarDir()
+    {
+        return trim($this->avatar, 'public');
     }
 }
