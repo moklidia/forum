@@ -10,7 +10,7 @@
 					{{ method_field('DELETE') }}
 					@endif
 					<button type="submit" class="btn btn-default">
-						{{ $reply->favorites()->count() }} {{ str_plural('like', $reply->favorites()->count()) }}</button>
+						{{ $reply->favorites_count }} {{ str_plural('like', $reply->favorites_count) }}</button>
 				</form>
 			</div>
 		</div>

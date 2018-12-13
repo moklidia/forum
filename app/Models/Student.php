@@ -11,6 +11,8 @@ class Student extends Model
 
     protected $fillable = ['last_name', 'given_name', 'date_of_birth', 'avg_point'];
 
+    protected $with = ['subjects', 'points'];
+
     public function group()
     {
         return $this->belongsTo('App\Models\Group', 'group_id');
@@ -28,6 +30,6 @@ class Student extends Model
 
     public function getAvgPointAttribute()
     {
-        return round($this->points()->pluck('points')->avg(), 1);
+        return round($this->points->pluck('points')->avg(), 1);
     }
 }

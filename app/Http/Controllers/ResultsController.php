@@ -20,7 +20,7 @@ class ResultsController extends Controller
     public function index()
     {
 
-        $students = Student::with('subjects', 'points')->get();
+        $students = Student::all();
 
         $subjects = Subject::all();
 

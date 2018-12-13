@@ -8,8 +8,6 @@ use App\Models\Student;
 class Group extends Model
 {
     protected $fillable = ['name', 'description'];
-    
-    //Get students for a group
 
     public function students()
     {
