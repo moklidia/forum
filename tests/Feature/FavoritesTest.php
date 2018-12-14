@@ -8,19 +8,18 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class FavoritesTest extends TestCase
 {
-	 use DatabaseMigrations;
+     use DatabaseMigrations;
 
 
-	 /**
+     /**
      * @test
      */
     public function guests_cannot_favorite_anything()
     {
         
         $this->withExceptionHandling()
-        	->post('replies/1/favorites')
-        	->assertRedirect('login');
-        
+            ->post('replies/1/favorites')
+            ->assertRedirect('login');
     }
     /**
      * @test
@@ -41,12 +40,12 @@ class FavoritesTest extends TestCase
     {
         $this->signIn();
         $reply = create('App\Models\Reply');
-        try{
-        	$this->post('replies/' . $reply->id . '/favorites');
-        $this->post('replies/' . $reply->id . '/favorites');
-    } catch(\Exception $e) {
-    	$this->fail("Didn't expect to insert the same record twice");
-    }
+        try {
+            $this->post('replies/' . $reply->id . '/favorites');
+            $this->post('replies/' . $reply->id . '/favorites');
+        } catch (\Exception $e) {
+            $this->fail("Didn't expect to insert the same record twice");
+        }
         
 
         $this->assertCount(1, $reply->favorites);

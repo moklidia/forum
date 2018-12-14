@@ -1,13 +1,17 @@
 @extends('layouts.app')
 @section('content')
-<div class="page-header">
-	<h1>{{ $profileUser->name }}'s Profile</h1>
-	<small>since {{ $profileUser->created_at->diffForHumans() }}</small>
-</div>
 <div class="container">
 	<div class="row">
 		<div class="coll-md-10 col-md-offset-1">
-			<img src="{{ $profileUser->avatarDir() }}" class="img-circle" style="width: 150px; height: 150px; float: left; border-radius: 50%; margin-right: 25px;" />
+			<img src="{{ $profileUser->avatarDir() }}" class="img-circle" style="width: 150px; height: 150px; float: left; border-radius: 50%; margin-right: 25px; margin-bottom: 15px" />
+			<h1>{{ $profileUser->name }}'s Profile</h1>
+			<small>since {{ $profileUser->created_at->diffForHumans() }}</small>
+			<form enctype="multipart/form-data" action="/profiles/ . {{ $currentUser->name}}" method="POST">
+				<label>Update Profile Image</label>
+				<input type="file" name="avatar">
+				<button type="submit" class="float-right btn btn-small btn-primary">Submit</button>
+				@csrf
+			</form>
 			
 		</div>
 	</div>

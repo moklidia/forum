@@ -69,7 +69,7 @@ class ThreadsTest extends TestCase
     public function a_user_can_filter_threads_by_any_username()
     {
         $this->signIn(create('App\Models\User', ['name' => 'Joe']));
-        $threadByJoe = create('App\Models\Thread', ['user_id' => auth()->id()]); 
+        $threadByJoe = create('App\Models\Thread', ['user_id' => auth()->id()]);
         $threadNotByJoe = create('App\Models\Thread');
 
         $this->get('/threads?by=Joe')
@@ -100,7 +100,6 @@ class ThreadsTest extends TestCase
         $threadWithTwoReplies->title,
         $threadWithNoReplies->title
         
-        ]);
+            ]);
     }
-
 }
