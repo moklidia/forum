@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card card-default" style="margin-bottom: 1em">
                 <div class="card-header">
-                    <a href="{{ route('profile', $thread->creator) }}"> {{ $thread->creator->name }}</a> posted:
+                    <img src="{{ $thread->creator->avatar }}" style="width: 50px; height: 50px; float: left; border-radius: 50%; margin-right: 25px;"><a href="{{ route('profile', $thread->creator) }}"> {{ $thread->creator->name }}</a> posted:
                     {{ $thread->title}}
                 </div>
                 <div class="card-body">

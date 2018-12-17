@@ -13,7 +13,7 @@
                         <strong><a href="{{ $thread->path() }}">{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}</a></strong>
                         </div>
                         <div class="body">{{ $thread->body }}</div>
-                        <p><a href="/threads?by={{ $thread->creator->name }}">{{ $thread->creator->name }}</a></p>
+                        <p><img src="{{ $thread->creator->avatar }}" style="width: 25px; height: 25px; float: left; border-radius: 50%; margin-right: 25px;"><a href="/threads?by={{ $thread->creator->name }}">{{ $thread->creator->name }}</a></p>
                     </article>
 
                     <hr>
