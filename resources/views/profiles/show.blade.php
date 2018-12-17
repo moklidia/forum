@@ -5,7 +5,7 @@
 		<div class="coll-md-10 col-md-offset-1">
 			<img src="{{ $profileUser->avatar }}" class="img-circle" style="width: 150px; height: 150px; float: left; border-radius: 50%; margin-right: 25px; margin-bottom: 15px" />
 			<h1>{{ $profileUser->name }}'s Profile</h1>
-			<small>since {{ $profileUser->created_at->diffForHumans() }}</small>
+			<small>last seen {{ $profileUser->lastSeen() }}</small>
 			@if($currentUser == $profileUser)
 			<form enctype="multipart/form-data" action="/profiles/ . {{ $profileUser->name}}" method="POST">
 				<label>Update Profile Image</label>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Redis;
 
 class User extends Authenticatable
 {
@@ -45,5 +46,12 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'name';
+    }
+
+    public function lastSeen()
+    {
+        $redis = Redis::connection();
+
+        return $redis->get('last_seen_' . $this->id);
     }
 }
