@@ -26,7 +26,7 @@ Add a group
       </div>
     </div>
     @if ($errors->any())
-    <div class="notification is-danger">
+    <div class="alert alert-danger">
       <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>

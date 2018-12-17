@@ -29,12 +29,12 @@
           </form>
           @if ($errors->any())
           
-            <ul class="notification is-danger">
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-       
+          <ul class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+          
           @endif
         </div>
         
