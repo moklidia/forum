@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Thread;
+use App\Http\Requests\ProfileValidation;
 use Image;
 
 class ProfilesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
+
     public function show(User $user)
     {
         return view(
@@ -20,7 +26,7 @@ class ProfilesController extends Controller
         );
     }
 
-    public function update(Request $request)
+    public function update(Request $request, ProfileValidation $rules)
     {
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');

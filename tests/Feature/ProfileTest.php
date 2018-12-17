@@ -38,7 +38,7 @@ class ProfilesTest extends TestCase
         $user = create('App\Models\User');
         $response = $this->getJson('/profiles/' . $user->name);
         
-        $response->assertSee($user->avatarDir());
+        $response->assertSee($user->avatar);
     }
 
     /**
@@ -50,6 +50,7 @@ class ProfilesTest extends TestCase
         $this->post('/profiles/' . $user->name);
         $response = $this->getJson('/profiles/' . $user->name);
         
-        $response->assertSee($user->avatarDir());
+        $response->assertSee($user->avatar);
     }
+
 }

@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Models\User;
-use Auth;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -13,11 +12,8 @@ class UserServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(User $user)
+    public function boot()
     {
-       
-        $currentUser = \Auth::user();
-
         \View::composer('*', function ($view) {
             $view->with('currentUser', \Auth::user());
         });

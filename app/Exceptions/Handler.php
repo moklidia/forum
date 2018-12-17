@@ -49,6 +49,11 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
+
+        if ($exception instanceof \Illuminate\Foundation\Http\Middleware\ValidatePostSize) {
+        // create a validator and validate to throw a new ValidationException
+            return ProfileValidation::rules();
+        }
         
         return parent::render($request, $exception);
     }

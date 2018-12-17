@@ -46,9 +46,4 @@ class User extends Authenticatable
     {
         return 'name';
     }
-
-    public function avatarDir()
-    {
-        return trim($this->avatar, 'public');
-    }
 }
