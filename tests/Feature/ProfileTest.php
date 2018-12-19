@@ -52,5 +52,4 @@ class ProfilesTest extends TestCase
         
         $response->assertSee($user->avatar);
     }
-
 }

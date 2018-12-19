@@ -13,7 +13,7 @@ class ThreadsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Thread::class, 10)->create()->each(
+        factory(App\Models\Thread::class, 5)->create()->each(
             function ($thread) {
                 factory('App\Models\Reply', 5)->create(
                     [

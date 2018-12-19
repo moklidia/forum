@@ -54,4 +54,12 @@ class User extends Authenticatable
 
         return $redis->get('last_seen_' . $this->id);
     }
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
 }

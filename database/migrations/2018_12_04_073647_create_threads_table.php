@@ -18,9 +18,7 @@ class CreateThreadsTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->unsignedInteger('user_id');
-                /*$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');*/
                 $table->unsignedInteger('channel_id');
-                /*$table->foreign('channel_id')->references('id')->on('channels');*/
                 $table->string('title');
                 $table->text('body');
                 $table->timestamps();

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9184fa284b06fe152e38cbbfcd42a80b",
-    "content-hash": "6d9c491edce63d7c598c109973ef145d",
+    "hash": "2311d693dc13e4ef38cb8f642da56bc5",
+    "content-hash": "75565580c0745de306e5d54042db8709",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -935,6 +935,65 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29 18:48:56"
+        },
+        {
+            "name": "kalnoy/nestedset",
+            "version": "v4.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lazychaser/laravel-nestedset.git",
+                "reference": "8f2882b8e402cce1204233541ea8ff51513f9e71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/8f2882b8e402cce1204233541ea8ff51513f9e71",
+                "reference": "8f2882b8e402cce1204233541ea8ff51513f9e71",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.2 - 5.7",
+                "illuminate/events": "5.2 - 5.7",
+                "illuminate/support": "5.2 - 5.7",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "v4.2.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Kalnoy\\Nestedset\\NestedSetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kalnoy\\Nestedset\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kalnoy",
+                    "email": "lazychaser@gmail.com"
+                }
+            ],
+            "description": "Nested Set Model for Laravel 4-5",
+            "keywords": [
+                "database",
+                "hierarchy",
+                "laravel",
+                "nested sets",
+                "nsm"
+            ],
+            "time": "2018-09-04 15:11:11"
         },
         {
             "name": "laravel/framework",

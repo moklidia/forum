@@ -31,3 +31,8 @@ Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::post('/profiles/{user}', 'ProfilesController@update');
+Route::get('/posts', 'PostsController@index');
+Route::get('/posts/{post}', 'PostsController@show');
+Route::get('/posts/create', 'PostsController@create');
+Route::post('/posts', 'PostsController@store');
+
