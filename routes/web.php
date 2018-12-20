@@ -32,7 +32,9 @@ Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::post('/profiles/{user}', 'ProfilesController@update');
 Route::get('/posts', 'PostsController@index');
-Route::get('/posts/{post}', 'PostsController@show');
 Route::get('/posts/create', 'PostsController@create');
+Route::get('/posts/{post}', 'PostsController@show');
 Route::post('/posts', 'PostsController@store');
+Route::post('/posts/{post}/comments', 'CommentsController@storeComments');
+Route::post('/posts/{post}/{comment}/nestedcomments', 'CommentsController@storeNestedComments');
 

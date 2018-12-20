@@ -20,7 +20,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::latest()->paginate(10);
 
         return View::make('posts.index')
             ->with('posts', $posts);
@@ -52,7 +52,7 @@ class PostsController extends Controller
             ]
         );
 
-        return back();
+        return redirect('/posts');
     }
 
     /**
@@ -63,6 +63,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
+        
         $postComments = Comment::byPost($post)->get()->toTree();
         
         return view(
@@ -79,7 +80,7 @@ class PostsController extends Controller
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
-     */
+
     public function edit()
     {
         //

@@ -27,6 +27,11 @@ class Comment extends Model
         return $this->hasMany('App\Models\Comment', 'parent_id', 'id');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Comment', 'parent_id', 'id');
+    }
+
     public function scopeByPost($query, $post)
     {
         return $query->where('post_id', $post->id);

@@ -13,14 +13,14 @@ class PostsTableSeeder extends Seeder
 
     public function run()
     {
-        factory('App\Models\Post'::class, 5)
+        factory('App\Models\Post'::class, 3)
         ->create()
         ->each(function ($post) {
-            factory('App\Models\Comment'::class, 3) // Create the root comments.
+            factory('App\Models\Comment'::class, 2) // Create the root comments.
             ->create(['post_id' => $post->id])
             ->each(function ($comment) use ($post) {
  // Add children to every root.
-                $comment->children()->saveMany(factory(App\Models\Comment::class, 2)->make([
+                $comment->children()->saveMany(factory(App\Models\Comment::class, 1)->make([
                     'post_id' => $comment->post_id
                 ]));
                 /*->each(function ($comment)  use ($post) { // Add children to every child of every root.
