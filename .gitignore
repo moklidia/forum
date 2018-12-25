@@ -8,6 +8,7 @@
 /.vscode
 /nbproject
 /.vagrant
+/.phpintel
 Homestead.json
 Homestead.yaml
 npm-debug.log
