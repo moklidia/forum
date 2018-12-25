@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
 {
@@ -43,17 +42,36 @@ class CreateThreadsTest extends TestCase
      */
     public function an_authenticated_user_can_create_forum_threads()
     {
-        $this->withExceptionHandling()
-            ->signIn();
+        $this->signIn();
 
         $thread = create('App\Models\Thread');
 
         $this->post('/threads', $thread->toArray());
-        
 
         $this->get($thread->path())
             ->assertSee($thread->title)
             ->assertSee($thread->body);
+    }
+
+    /** @test */
+    function unauthorized_users_may_not_delete_threads()
+    {
+        $this->withExceptionHandling();
+        $thread = create('App\Models\Thread');
+        $this->delete($thread->path())->assertRedirect('/login');
+        $this->signIn();
+        $this->delete($thread->path())->assertStatus(403);
+    }
+    /** @test */
+    function authorized_users_can_delete_threads()
+    {
+        $this->signIn();
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
+        $reply = create('App\Models\Reply', ['thread_id' => $thread->id]);
+        $response = $this->json('DELETE', $thread->path());
+        $response->assertStatus(204);
+        $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
+        $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
     }
 
     /**
@@ -62,7 +80,7 @@ class CreateThreadsTest extends TestCase
     public function a_thread_requires_a_title()
     {
         $this->publishThread(['title' => null])
-        ->assertSessionHasErrors('title');
+            ->assertSessionHasErrors('title');
     }
 
     /**
@@ -71,7 +89,7 @@ class CreateThreadsTest extends TestCase
     public function a_thread_requires_a_body()
     {
         $this->publishThread(['body' => null])
-        ->assertSessionHasErrors('body');
+            ->assertSessionHasErrors('body');
     }
 
     /**
@@ -82,10 +100,10 @@ class CreateThreadsTest extends TestCase
         factory('App\Models\Channel', 2)->create();
 
         $this->publishThread(['channel_id' => null])
-        ->assertSessionHasErrors('channel_id');
+            ->assertSessionHasErrors('channel_id');
 
         $this->publishThread(['channel_id' => 999])
-        ->assertSessionHasErrors('channel_id');
+            ->assertSessionHasErrors('channel_id');
     }
 
     public function publishThread($overrides)

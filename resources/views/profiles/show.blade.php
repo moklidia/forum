@@ -13,41 +13,27 @@
 				<button type="submit" class="float-right btn btn-small btn-primary">Submit</button>
 				@csrf
 			</form>
-			
 			@endif
 		</div>
-
+		@if ($errors->any())
+		<ul class="alert alert-danger" role="alert">
+			@foreach ($errors->all() as $error)
+			<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+		@endif
 	</div>
-	@if ($errors->any())
-          
-            <ul class="alert alert-danger" role="alert">
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-       
-          @endif
-</div>
-<div class="col-md-8">
-	@foreach($threads as $thread)
-	<div class="card card-default">
-		<div class="card-header">
-			<div class="level">
-				<span class="flex">
-					<a href="{{ route('profile', $thread->creator) }}"> {{ $thread->creator->name }}</a> posted:
-					{{ $thread->title}}
-				</span>
-				<span>
-					{{ $thread->created_at->diffForHumans() }}
-				</span>
-			</div>
-		</div>
-		<div class="card-body">
-			{{ $thread->body }}
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			@foreach($activities as $date => $activity)
+				<h3 class="page-header">{{ $date }}</h3>
+				@foreach($activity as $record)
+					@isset($record->subject)
+						@include ("profiles.activities.{$record->type}",['activity' => $record])
+					@endif
+				@endforeach
+			@endforeach
 		</div>
 	</div>
-	@endforeach
-	{{ $threads->links() }}
 </div>
-
 @endsection

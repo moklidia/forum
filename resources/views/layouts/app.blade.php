@@ -26,7 +26,7 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'University') }}
                     </a>
-                    
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
@@ -36,13 +36,13 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ URL::to('/threads') }}">All threads</a>
-                                    <a class="dropdown-item" href="{{ URL::to('/threads?popular=1') }}">Popular threads</a> 
+                                    <a class="dropdown-item" href="{{ URL::to('/threads?popular=1') }}">Popular threads</a>
                                     @if (auth()->check())
                                     <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My threads</a>
                                     @endif
                                 </div>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::to('/threads/create') }}">New thread
                                 </a>
@@ -57,21 +57,7 @@
                                     @endforeach
                                 </div>
                             </li>
-                            
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    For Students
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ URL::to('groups') }}">Groups</a>
-                                    <a class="dropdown-item" href="{{ URL::to('students') }}">Students</a>
-                                    <a class="dropdown-item" href="{{ URL::to('subjects') }}">Subjects</a>
-                                    <a class="dropdown-item" href="{{ URL::to('results') }}">Results</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
-                            
+
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">

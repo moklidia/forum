@@ -2,15 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ProfilesTest extends TestCase
 {
     use DatabaseMigrations;
 
-   /**
+    /**
      * @test
      */
     public function a_user_has_a_profile()
@@ -24,10 +23,13 @@ class ProfilesTest extends TestCase
      */
     public function profiles_displays_all_threads_assosiated_with_this_user()
     {
-        $user = create('App\Models\User');
-        $thread = create('App\Models\Thread', ['user_id' => $user->id]);
-        $this->get('/profiles/' . $user->name)
-            ->assertSee($thread->title);
+        $this->signIn();
+
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
+
+        $this->get('/profiles/' . auth()->user()->name)
+            ->assertSee($thread->title)
+            ->assertSee($thread->body);
     }
 
     /**
@@ -37,7 +39,7 @@ class ProfilesTest extends TestCase
     {
         $user = create('App\Models\User');
         $response = $this->getJson('/profiles/' . $user->name);
-        
+
         $response->assertSee($user->avatar);
     }
 
@@ -49,7 +51,7 @@ class ProfilesTest extends TestCase
         $this->be($user = create('App\Models\User'));
         $this->post('/profiles/' . $user->name);
         $response = $this->getJson('/profiles/' . $user->name);
-        
+
         $response->assertSee($user->avatar);
     }
 }

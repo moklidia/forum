@@ -1,8 +1,6 @@
 <?php
 
-
 use Illuminate\Database\Seeder;
-use App\Models\User;
 
 class ThreadsTableSeeder extends Seeder
 {
@@ -13,14 +11,17 @@ class ThreadsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Thread::class, 5)->create()->each(
+        /*factory(App\Models\Channel::class, 4)->create()->each(
+            function ($channel) {*/
+        factory(App\Models\Thread::class, 3)->create()->each(
             function ($thread) {
-                factory('App\Models\Reply', 5)->create(
+                factory('App\Models\Reply', 2)->create(
                     [
-                    'thread_id' => $thread->id,
+                        'thread_id' => $thread->id,
                     ]
                 );
             }
         );
+        /*});*/
     }
 }
