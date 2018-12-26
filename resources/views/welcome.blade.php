@@ -3,6 +3,6 @@
 Welcome
 @endsection
 @section('content')
-<h1>Welcome to the Laravel University</h1>
+<h1>Welcome to Kitsune School</h1>
 
 @endsection

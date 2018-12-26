@@ -38,6 +38,6 @@ class ProfilesController extends Controller
             $user->save();
         }
 
-        return redirect()->back()->with('success', 'Update successfully');
+        return redirect()->back()->with('flash', 'Your profile image has been updated!');
     }
 }
